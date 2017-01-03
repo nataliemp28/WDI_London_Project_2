@@ -1,3 +1,3 @@
 module.exports = {
-  secret:process.env.SECRET || "sausagesausagesausagesausagesausagesausagesausagesausagesausagesausagesausagesausage"
+  secret: process.env.SECRET || 'sausagesausagesausagesausagesausagesausagesausagesausagesausagesausagesausagesausage'
 };

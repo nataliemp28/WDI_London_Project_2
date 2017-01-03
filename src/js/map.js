@@ -2,17 +2,17 @@
 // let destination = 'dulwich';
 
 function getDistance(origin,destination) {
-var service = new google.maps.DistanceMatrixService();
-service.getDistanceMatrix(
-  {
-    origins: [origin],
-    destinations: [destination],
-    travelMode: 'DRIVING',
-  }, callback);
+  var service = new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix(
+    {
+      origins: [origin],
+      destinations: [destination],
+      travelMode: 'DRIVING',
+    }, callback);
 
   function callback(response, status) {
-    console.log("h");
-    if (status == 'OK') {
+    console.log('h');
+    if (status === 'OK') {
       console.log(2);
       var origins = response.originAddresses;
       var destinations = response.destinationAddresses;

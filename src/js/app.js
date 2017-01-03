@@ -1,13 +1,13 @@
 $(() => {
 
   // assign variables that will be used throughout.
-  let $main = $('main');
-  let $map = $('#all-map');
-  let $loggedIn = $('.loggedIn');
-  let $loggedOut = $('.loggedOut');
-  let $listUsers = $('.listUsers');
-  let $editBar = $('.editBar');
-  let currentUsers = {};
+  const $main = $('main');
+  const $map = $('#all-map');
+  const $loggedIn = $('.loggedIn');
+  const $loggedOut = $('.loggedOut');
+  const $listUsers = $('.listUsers');
+  const $editBar = $('.editBar');
+  const currentUsers = {};
   //event handlers go here
   $('.logout').on('click', logout);
   $('.edit').on('click', showEditBar);
@@ -16,7 +16,7 @@ $(() => {
   $('.listUsersButton').on('click', listUsersButton);
   $('body').on('click', ".moreUsers", showMoreUsers);
 
-  let geocoder = new google.maps.Geocoder();
+  const geocoder = new google.maps.Geocoder();
 
   //handles the registration form
 
@@ -32,9 +32,9 @@ $(() => {
 
   function handleForm(e){
     e.preventDefault();
-    let $form = $(this);
+    const $form = $(this);
     if($form.attr('action') === '/register' || $form.attr('method') === `PUT`) {
-      let postcode = $form.find('[name=postcode]').val();
+      const postcode = $form.find('[name=postcode]').val();
       geocoder.geocode({ address: `${postcode}, UK` }, (results, status) => {
         if(status == google.maps.GeocoderStatus.OK) {
           $form.find('[name=lat]').val(results[0].geometry.location.lat());
@@ -50,10 +50,10 @@ $(() => {
   }
 
   function sendFormData($form) {
-    let url = $form.attr('action');
-    let method = $form.attr('method');
-    let data = $form.serialize();
-    let token = localStorage.getItem('token');
+    const url = $form.attr('action');
+    const method = $form.attr('method');
+    const data = $form.serialize();
+    const token = localStorage.getItem('token');
 
 
 
@@ -70,8 +70,8 @@ $(() => {
       if (data && data.token){
         localStorage.setItem('_id',data.user._id);
         localStorage.setItem('token', data.token);
-        if (window.location.pathname === "/") {
-          window.location.replace("/members");
+        if (window.location.pathname === '/') {
+          window.location.replace('/members');
         }
       }
       showMembersPage();
@@ -83,7 +83,7 @@ $(() => {
 
       }
       else {
-        for(let name in err.responseJSON) {
+        for(const name in err.responseJSON) {
           $form.find(`[name=${name}]`).parent('.form-group').addClass('error').find('small.error').html(`<p> ${err.responseJSON[name].message} </p>`);
         }}
       });
@@ -118,7 +118,7 @@ $(() => {
 
         if (event) event.preventDefault();
 
-        let token = localStorage.getItem('token');
+        const token = localStorage.getItem('token');
         $.ajax({
           url: '/users',
           method:'GET',
@@ -137,27 +137,27 @@ $(() => {
         if (event) event.preventDefault();
         currentUsers = users;
 
-        let $skillLevel = $('#skillLevel').val();
+        const $skillLevel = $('#skillLevel').val();
         if (finish > users.length) {finish = users.length;}
 
-        for (let i = start; i < finish; i++) {
+        for (const i = start; i < finish; i++) {
           console.log(users[i].skillLevel);
           if(users[i].skillLevel === $skillLevel || $skillLevel === 'All Skill Levels') {
             $listUsers.append(`
 
               <div class="user-card">
-                <h4>${users[i].fullname}</h4>
-                <p><img src="${users[i].image}"class="userImage" alt="Image Coming"></p>
-                <p><b>Location: </b>${users[i].postcode}</p>
-                <p><b>Phone:</b>${users[i].phoneNumber}</p>
-                <p><b>Willing to travel</b>: ${users[i].travelDistance} miles</p>
-                <p><b>Typical availability</b>: ${users[i].availability}</p>
-                <p><b>Skill Level</b>: ${users[i].skillLevel}</p>
-                <a href="mailto:${users[i].email}"><button class="btn btn-info">Email</button></a>
+              <h4>${users[i].fullname}</h4>
+              <p><img src="${users[i].image}"class="userImage" alt="Image Coming"></p>
+              <p><b>Location: </b>${users[i].postcode}</p>
+              <p><b>Phone:</b>${users[i].phoneNumber}</p>
+              <p><b>Willing to travel</b>: ${users[i].travelDistance} miles</p>
+              <p><b>Typical availability</b>: ${users[i].availability}</p>
+              <p><b>Skill Level</b>: ${users[i].skillLevel}</p>
+              <a href="mailto:${users[i].email}"><button class="btn btn-info">Email</button></a>
               </div><br/>
               `);
 
-              if (i==finish-1 && finish != users.length) {
+              if (i === finish-1 && finish !== users.length) {
                 $listUsers.append(`<button class="btn btn-primary moreUsers" data-finish="${finish}">More..</button>`);
               }
             }
@@ -165,13 +165,13 @@ $(() => {
 
           }
           //check if userList is empty and provide a message
-          if( $listUsers.is(':empty') ) {
+          if ( $listUsers.is(':empty') ) {
             $listUsers.append(`Sorry no players were found!`);
           }
         }
 
         function showMoreUsers() {
-          let start = $(event.target).data('finish');
+          const start = $(event.target).data('finish');
           $listUsers.empty();
           $editBar.hide();
           showUsers(currentUsers,start,start+10);
@@ -185,8 +185,8 @@ $(() => {
             event.preventDefault();
 
           }
-          let id = $(event.target).data('id');
-          let token = localStorage.getItem('token');
+          const id = $(event.target).data('id');
+          const token = localStorage.getItem('token');
           $.ajax({
             url: `/api/user/${id}`,
             method:'GET',
@@ -233,7 +233,7 @@ $(() => {
             localStorage.removeItem('token');
             localStorage.removeItem('_id');
             $map.hide();
-            window.location.replace("/");
+            window.location.replace('/');
             $loggedIn.hide();
             console.log("I'm loggd out");
             $loggedOut.show();
@@ -277,13 +277,13 @@ $(() => {
 
           function showRegForm(action) {
 
-            let token = localStorage.getItem('token');
-            let _id = localStorage.getItem('_id');
+            const token = localStorage.getItem('token');
+            const _id = localStorage.getItem('_id');
 
-            let method = "POST";
-            let button = "Register";
-            let message ="Join the community today!";
-            let formAction ="/register";
+            const method = "POST";
+            const button = "Register";
+            const message ="Join the community today!";
+            const formAction ="/register";
             if (action == "edit") {
               method = "PUT";
               button = 'Update';
@@ -390,7 +390,7 @@ $(() => {
               showRegForm("edit");
               $listUsers.hide();
               $editBar.slideToggle( "slow", function() {
-                // Animation complete.
+                // Animation compconste.
                 $('#password').prop("hidden", true);
                 $('#confPassword').prop("hidden", true);
                 $("button").click(function(){
