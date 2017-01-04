@@ -25,7 +25,7 @@ function userLogin(req, res){
       return res.status(400).json({ message: "No Login Hombre"});
     }
     if (!user || !user.validatePassword(req.body.password)) {
-      return res.status(401).json({ message: "Unauthorized Login"});
+      return res.status(401).json({ message: "Your password or email is incorrect"});
     }
     let payload = {_id:user._id, username: user.username};
     let token = jwt.sign(payload,secret, {expiresIn: 60*60*24});

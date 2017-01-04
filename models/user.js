@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const validator = require('validator');
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, required:"Please put a username", unique: true},
+  username: { type: String, required: "Please put a username", unique: true},
   fullname: { type: String },
   image: { type: String },
   postcode: { type: String },

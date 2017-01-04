@@ -36,7 +36,7 @@ $(() => {
     if($form.attr('action') === '/register' || $form.attr('method') === `PUT`) {
       const postcode = $form.find('[name=postcode]').val();
       geocoder.geocode({ address: `${postcode}, UK` }, (results, status) => {
-        if(status == google.maps.GeocoderStatus.OK) {
+        if(status === google.maps.GeocoderStatus.OK) {
           $form.find('[name=lat]').val(results[0].geometry.location.lat());
           $form.find('[name=lng]').val(results[0].geometry.location.lng());
           sendFormData($form);
