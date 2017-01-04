@@ -2,7 +2,7 @@
 
 <h2>Overview</h2>
 
-<p>This was a group project within a team of four. This was our second project at General Assembly and we were tasked with building a full stack node app, using jQuery on the front end and the Google Maps API.</p>
+<p>This was a group project within a team of four. This was our second project at General Assembly and we were tasked with building a full stack node app, using jQuery on the front end and the Google Maps API. Game, Set, Match is an app which enables users to find casual tennis partners London wide and then select a mutually suitable venue to play tennis at.</p>
 
 <h2>Technologies</h2>
 
@@ -16,7 +16,7 @@
 
 <h2>What Next</h2>
 
-<p>We would have liked to add a method of contacting the player through the app, such as some kind of messaging service.</p>
+<p>We would have liked to add a method of contacting the player through the app, such as some kind of messaging service. We also wanted each user to be able to calculate their journey to the tennis court and find the best route once they had agreed on a location.</p>
 
 https://project-2-game-set-match.herokuapp.com/
 
