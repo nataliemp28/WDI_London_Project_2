@@ -133,14 +133,14 @@ $(() => {
       }
 
       // runs a loop on data returned by getUsers to output the user list.
-      function showUsers(users,start,finish) {
+      function showUsers(users, start, finish) {
         if (event) event.preventDefault();
-        currentUsers = users;
+        const currentUsers = users;
 
         const $skillLevel = $('#skillLevel').val();
         if (finish > users.length) {finish = users.length;}
 
-        for (const i = start; i < finish; i++) {
+        for (let i = start; i < finish; i ++) {
           console.log(users[i].skillLevel);
           if(users[i].skillLevel === $skillLevel || $skillLevel === 'All Skill Levels') {
             $listUsers.append(`
@@ -285,10 +285,10 @@ $(() => {
             const message ="Join the community today!";
             const formAction ="/register";
             if (action == "edit") {
-              method = "PUT";
-              button = 'Update';
-              formAction = `/user/${_id}`;
-              message ="Update Your Profile";
+              const method = "PUT";
+              const button = 'Update';
+              const formAction = `/user/${_id}`;
+              const message ="Update Your Profile";
 
             }
 
@@ -387,7 +387,7 @@ $(() => {
             }
 
             function showEditBar() {
-              showRegForm("edit");
+              showRegForm('edit');
               $listUsers.hide();
               $editBar.slideToggle( "slow", function() {
                 // Animation compconste.
@@ -402,4 +402,4 @@ $(() => {
                 });
               });
             }
-          });
+});

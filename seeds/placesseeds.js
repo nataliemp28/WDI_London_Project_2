@@ -4,7 +4,7 @@ const Promise = require('bluebird');
 mongoose.Promise = Promise;
 const Place = require('../models/place');
 
-let mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/gamesetmatch';
+const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/gamesetmatch';
 mongoose.connect(mongoUri);
 
 Place.collection.drop();

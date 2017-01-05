@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../models/user');
 
-let mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/gamesetmatch';
+const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/gamesetmatch';
 
 mongoose.connect(mongoUri);
 

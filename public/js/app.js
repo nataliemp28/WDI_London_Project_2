@@ -38,7 +38,7 @@ $(function () {
     if ($form.attr('action') === '/register' || $form.attr('method') === 'PUT') {
       var postcode = $form.find('[name=postcode]').val();
       geocoder.geocode({ address: postcode + ', UK' }, function (results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
+        if (status === google.maps.GeocoderStatus.OK) {
           $form.find('[name=lat]').val(results[0].geometry.location.lat());
           $form.find('[name=lng]').val(results[0].geometry.location.lng());
           sendFormData($form);
@@ -67,8 +67,8 @@ $(function () {
       if (data && data.token) {
         localStorage.setItem('_id', data.user._id);
         localStorage.setItem('token', data.token);
-        if (window.location.pathname === "/") {
-          window.location.replace("/members");
+        if (window.location.pathname === '/') {
+          window.location.replace('/members');
         }
       }
       showMembersPage();
@@ -112,7 +112,7 @@ $(function () {
   // runs a loop on data returned by getUsers to output the user list.
   function showUsers(users, start, finish) {
     if (event) event.preventDefault();
-    currentUsers = users;
+    var currentUsers = users;
 
     var $skillLevel = $('#skillLevel').val();
     if (finish > users.length) {
@@ -122,9 +122,9 @@ $(function () {
     for (var i = start; i < finish; i++) {
       console.log(users[i].skillLevel);
       if (users[i].skillLevel === $skillLevel || $skillLevel === 'All Skill Levels') {
-        $listUsers.append('\n\n              <div class="user-card">\n                <h4>' + users[i].fullname + '</h4>\n                <p><img src="' + users[i].image + '"class="userImage" alt="Image Coming"></p>\n                <p><b>Location: </b>' + users[i].postcode + '</p>\n                <p><b>Phone:</b>' + users[i].phoneNumber + '</p>\n                <p><b>Willing to travel</b>: ' + users[i].travelDistance + ' miles</p>\n                <p><b>Typical availability</b>: ' + users[i].availability + '</p>\n                <p><b>Skill Level</b>: ' + users[i].skillLevel + '</p>\n                <a href="mailto:' + users[i].email + '"><button class="btn btn-info">Email</button></a>\n              </div><br/>\n              ');
+        $listUsers.append('\n\n              <div class="user-card">\n              <h4>' + users[i].fullname + '</h4>\n              <p><img src="' + users[i].image + '"class="userImage" alt="Image Coming"></p>\n              <p><b>Location: </b>' + users[i].postcode + '</p>\n              <p><b>Phone:</b>' + users[i].phoneNumber + '</p>\n              <p><b>Willing to travel</b>: ' + users[i].travelDistance + ' miles</p>\n              <p><b>Typical availability</b>: ' + users[i].availability + '</p>\n              <p><b>Skill Level</b>: ' + users[i].skillLevel + '</p>\n              <a href="mailto:' + users[i].email + '"><button class="btn btn-info">Email</button></a>\n              </div><br/>\n              ');
 
-        if (i == finish - 1 && finish != users.length) {
+        if (i === finish - 1 && finish !== users.length) {
           $listUsers.append('<button class="btn btn-primary moreUsers" data-finish="' + finish + '">More..</button>');
         }
       }
@@ -176,7 +176,7 @@ $(function () {
     localStorage.removeItem('token');
     localStorage.removeItem('_id');
     $map.hide();
-    window.location.replace("/");
+    window.location.replace('/');
     $loggedIn.hide();
     console.log("I'm loggd out");
     $loggedOut.show();
@@ -225,10 +225,10 @@ $(function () {
     var message = "Join the community today!";
     var formAction = "/register";
     if (action == "edit") {
-      method = "PUT";
-      button = 'Update';
-      formAction = '/user/' + _id;
-      message = "Update Your Profile";
+      var _method = "PUT";
+      var _button = 'Update';
+      var _formAction = '/user/' + _id;
+      var _message = "Update Your Profile";
     }
 
     if (token) {
@@ -258,10 +258,10 @@ $(function () {
   }
 
   function showEditBar() {
-    showRegForm("edit");
+    showRegForm('edit');
     $listUsers.hide();
     $editBar.slideToggle("slow", function () {
-      // Animation complete.
+      // Animation compconste.
       $('#password').prop("hidden", true);
       $('#confPassword').prop("hidden", true);
       $("button").click(function () {

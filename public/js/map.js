@@ -12,8 +12,8 @@ function getDistance(origin, destination) {
   }, callback);
 
   function callback(response, status) {
-    console.log("h");
-    if (status == 'OK') {
+    console.log('h');
+    if (status === 'OK') {
       console.log(2);
       var origins = response.originAddresses;
       var destinations = response.destinationAddresses;
