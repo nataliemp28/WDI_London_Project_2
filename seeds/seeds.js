@@ -34,7 +34,7 @@ User.collection.drop();
     availability: "Weekends",
     ageRange: "18-35",
     travelDistance: 10,
-    email: "natalie@gmail.com",
+    email: "nat@test.com",
     phoneNumber: "07594263060",
     password: "password",
     passwordConfirmation: "password"
