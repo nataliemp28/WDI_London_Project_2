@@ -5,7 +5,6 @@ const User = require('../controllers/users.js');
 const Places = require('../controllers/places.js');
 const secret = require('./tokens').secret;
 
-
 function secureRoute(req, res, next) {
   if(!req.headers.authorization) return res.status(401).json({ message: 'Unauthorized!!'});
 
@@ -46,6 +45,6 @@ router.route('/login')
   .post(User.login);
 
 router.route('/register')
-.post(User.register);
+  .post(User.register);
 
 module.exports = router;
