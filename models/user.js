@@ -44,13 +44,13 @@ function validatePasswordHash() {
 }
 
 function validateEmail(email) {
- if (!validator.isEmail(email)) {
-   return this.invalidate('email', 'must be a valid email address');
- }
+  if (!validator.isEmail(email)) {
+    return this.invalidate('email', 'must be a valid email address');
+  }
 }
 
 function validatePassword(password){
- return bcrypt.compareSync(password, this.passwordHash);
+  return bcrypt.compareSync(password, this.passwordHash);
 }
 
 userSchema
